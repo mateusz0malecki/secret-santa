@@ -1,0 +1,5 @@
+wait-for-it==2.2.1
+django==4.1.6
+djangorestframework==3.14.0
+django-filter==22.1
+psycopg2==2.9.5

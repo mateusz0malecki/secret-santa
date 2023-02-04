@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  db:
+    container_name: db
+    image: postgres:14-alpine
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: secret-santa
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    logging:
+      driver: none
+
+  backend:
+    container_name: backend
+    build: ./backend
+    command: bash -c "wait-for-it --service db:5432 && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    tty: True
+    volumes:
+      - ./backend:/backend
+    ports:
+      - "8000:8000"
+
+volumes:
+  db_data:
