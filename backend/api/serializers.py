@@ -60,7 +60,6 @@ class SantaListSerializer(serializers.ModelSerializer):
     class Meta:
         model = SantaList
         fields = [
-            'santa_user',
             'text',
             'created_at'
         ]

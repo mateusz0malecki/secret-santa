@@ -1,15 +1,5 @@
 import uuid
 from django.db import models
-from django.dispatch import receiver
-from django.db.models.signals import post_save
-from django.contrib.auth.models import User
-from rest_framework.authtoken.models import Token
-
-
-@receiver(post_save, sender=User)
-def create_auth_token(sender, instance=None, created=False, **kwargs):
-    if created:
-        Token.objects.create(user=instance)
 
 
 class SantaGroup(models.Model):
@@ -53,4 +43,4 @@ class SantaList(models.Model):
     created_at = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.santa_user} - {self.created_at}"
+        return f"{self.santa_user.id} - {self.created_at}"

@@ -10,5 +10,7 @@ router.register('santaGroups', views.SantaGroupViewSet, basename='SantaGroups')
 router.register('santaLists', views.SantaListViewSet, basename='SantaLists')
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('', include(router.urls)),
+    path('login/', views.LoginView.as_view(), name='login'),
+    path('register/', views.RegisterView.as_view(), name='register'),
 ]
